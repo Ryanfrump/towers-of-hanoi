@@ -4,3 +4,63 @@
   padding: 2rem;
   text-align: center;
 }
+
+main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tower {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 300px;
+  width: 400px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+  background-position: bottom;
+  padding-bottom: 22px;
+  margin-bottom: 20px;
+  /* margin-top: -40px; */
+}
+
+.disc {
+  display: flex;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 24px;
+  z-index: 2;
+  border-radius: 15px;
+  margin-bottom: 3px;
+}
+.disc-1 {
+  width: 69px;
+  align-self: center;
+}
+.disc-2 {
+  width: 101px;
+  align-self: center;
+}
+.disc-3 {
+  width: 133px;
+  align-self: center;
+}
+.disc-4 {
+  width: 165px;
+  align-self: center;
+}
+.disc-5 {
+  width: 197px;
+  align-self: center;
+}
+.disc-6 {
+  width: 230px;
+  align-self: center;
+}
+.disc-7 {
+  width: 262px;
+  align-self: center;
+}
