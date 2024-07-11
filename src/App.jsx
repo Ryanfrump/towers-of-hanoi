@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DndContext } from "@dnd-kit/core";
-
+import Disc from "./Disc";
 import "./App.css";
 import Game from "./Game";
 
@@ -11,24 +11,35 @@ function App() {
     C: [],
   });
 
-  function handleDragEnd(event) {
-    const { active, over } = event;
-    if (over && active.id !== over.id) {
-      setTowers((prevTowers) => {
-        const newTowers = { ...prevTowers };
-        // Find the source tower
-        const sourceTower = Object.keys(newTowers).find((key) =>
-          newTowers[key].includes(active.id)
-        );
-        // Remove the disc from the source tower
-        newTowers[sourceTower] = newTowers[sourceTower].filter(
-          (id) => id !== active.id
-        );
-        // Add the disc to the target tower
+  const [warning, setWarning] = useState(0);
+
+  function handleDragEnd({ active, over }) {
+    setTowers((prevTowers) => {
+      const newTowers = { ...prevTowers };
+
+      const sourceTower = Object.keys(newTowers).find((key) =>
+        newTowers[key].includes(active.id)
+      );
+      newTowers[sourceTower] = newTowers[sourceTower].filter(
+        (id) => id !== active.id
+      );
+
+      if (
+        newTowers[over.id].length === 0 ||
+        Disc.discIndex(active.id) < Disc.discIndex(newTowers[over.id][0])
+      ) {
         newTowers[over.id].unshift(active.id);
-        return newTowers;
-      });
-    }
+      } else {
+        if (warning === 0) {
+          alert("Invalid move: cannot place larger disc on smaller disc");
+          newTowers[sourceTower].unshift(active.id);
+          setWarning(1);
+        } else {
+          newTowers[sourceTower].unshift(active.id);
+        }
+      }
+      return newTowers;
+    });
   }
 
   return (

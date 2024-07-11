@@ -10,10 +10,10 @@ import Disc7 from "./assets/Untitled/Rectangle-7.png";
 
 const discImages = [Disc1, Disc2, Disc3, Disc4, Disc5, Disc6, Disc7];
 
-export default function Disc({ id, isDraggable }) {
+export default function Disc({ id, isTopDisc }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
-    disabled: !isDraggable,
+    disabled: !isTopDisc,
   });
 
   const discIndex = parseInt(id.split("-")[1], 10);
@@ -35,8 +35,10 @@ export default function Disc({ id, isDraggable }) {
       className={discClassName}
       ref={setNodeRef}
       style={style}
-      {...(isDraggable ? listeners : {})}
+      {...(isTopDisc ? listeners : {})}
       {...attributes}
     ></div>
   );
 }
+
+Disc.discIndex = (id) => parseInt(id.split("-")[1], 10);

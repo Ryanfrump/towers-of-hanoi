@@ -19,11 +19,10 @@ main {
   background-size: contain;
   background-repeat: no-repeat;
   position: relative;
-  z-index: 1;
+
   background-position: bottom;
   padding-bottom: 22px;
   margin-bottom: 20px;
-  /* margin-top: -40px; */
 }
 
 .disc {
@@ -32,7 +31,7 @@ main {
   background-repeat: no-repeat;
   position: relative;
   height: 24px;
-  z-index: 2;
+
   border-radius: 15px;
   margin-bottom: 3px;
 }
