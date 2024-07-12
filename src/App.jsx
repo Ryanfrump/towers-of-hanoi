@@ -42,7 +42,7 @@ function App() {
           newTowers[sourceTower].unshift(active.id);
         }
       }
-      if (newTowers.C.length === 3) {
+      if (newTowers.C.length === 7) {
         setIsGameWon(true);
       }
       return newTowers;
