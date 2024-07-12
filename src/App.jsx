@@ -12,8 +12,12 @@ function App() {
   });
 
   const [warning, setWarning] = useState(0);
+  const [isGameWon, setIsGameWon] = useState(false);
 
   function handleDragEnd({ active, over }) {
+    if (!over || !over.id) {
+      return;
+    }
     setTowers((prevTowers) => {
       const newTowers = { ...prevTowers };
 
@@ -38,6 +42,9 @@ function App() {
           newTowers[sourceTower].unshift(active.id);
         }
       }
+      if (newTowers.C.length === 3) {
+        setIsGameWon(true);
+      }
       return newTowers;
     });
   }
@@ -47,7 +54,16 @@ function App() {
       <header>
         <h1>Tower of The Gods</h1>
       </header>
-      <Game towers={towers} />
+      {isGameWon ? (
+        <div className="win-message">
+          <h2>
+            Congratulations! You won! Now for 12 easy payments of 19.99 you can
+            unlock the full version!
+          </h2>
+        </div>
+      ) : (
+        <Game towers={towers} />
+      )}
       <footer>
         <p>Created by Ryan the Great</p>
       </footer>
